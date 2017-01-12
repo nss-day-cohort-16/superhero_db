@@ -47,12 +47,39 @@ CREATE TABLE `PowerType` (
 	`Name`	TEXT NOT NULL
 );
 
+INSERT INTO PowerType VALUES (null, 'Physical');
+INSERT INTO PowerType VALUES (null, 'Energy');
+
+
 CREATE TABLE `Power` (
 	`PowerId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	`Name`	TEXT NOT NULL,
 	`PowerTypeId`	INTEGER NOT NULL,
 	FOREIGN KEY(`PowerTypeId`) REFERENCES `PowerType`(`PowerTypeId`)
 );
+
+INSERT INTO Power
+  SELECT null, 'Super Strength', PowerTypeId
+  FROM PowerType
+  WHERE Name = 'Physical';
+
+INSERT INTO Power
+  SELECT null, 'Elasticity', PowerTypeId
+  FROM PowerType
+  WHERE Name = 'Physical';
+
+INSERT INTO Power
+  SELECT null, 'Laser Eyesight', PowerTypeId
+  FROM PowerType
+  WHERE Name = 'Energy';
+
+INSERT INTO Power
+  SELECT null, 'Storm Power', PowerTypeId
+  FROM PowerType
+  WHERE Name = 'Energy';
+
+
+
 
 CREATE TABLE `SuperheroPower` (
 	`SuperheroPowerId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

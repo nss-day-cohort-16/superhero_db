@@ -1,9 +1,9 @@
-DELETE FROM PowerType;
+DELETE FROM SuperheroPower;
 DELETE FROM Power;
+DELETE FROM PowerType;
+DELETE FROM SuperheroWeakness;
 DELETE FROM Weakness;
 DELETE FROM Sidekick;
-DELETE FROM SuperheroPower;
-DELETE FROM SuperheroWeakness;
 DELETE FROM Superhero;
 
 DROP TABLE IF EXISTS Superhero;
@@ -78,7 +78,10 @@ INSERT INTO Power
   FROM PowerType
   WHERE Name = 'Energy';
 
-
+INSERT INTO Power
+  SELECT null, 'Reality Manipulation', PowerTypeId
+  FROM PowerType
+  WHERE Name = 'Energy';
 
 
 CREATE TABLE `SuperheroPower` (
@@ -89,10 +92,23 @@ CREATE TABLE `SuperheroPower` (
 	FOREIGN KEY(`SuperheroId`) REFERENCES `Superhero`(`SuperheroId`)
 );
 
+INSERT INTO SuperheroPower
+  SELECT null, s.SuperheroId, p.PowerId
+  FROM Power p, Superhero s
+  WHERE s.Name = 'Wonder Woman' and p.Name = "Super Strength";
+
+INSERT INTO SuperheroPower
+  SELECT null, s.SuperheroId, p.PowerId
+  FROM Power p, Superhero s
+  WHERE s.Name = 'Green Lantern' and p.Name = "Reality Manipulation";
+
+
 CREATE TABLE `Weakness` (
 	`WeaknessId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	`Name`	TEXT NOT NULL
 );
+
+INSERT INTO Weakness VALUES (null, 'Yellow');
 
 CREATE TABLE `SuperheroWeakness` (
 	`SuperheroWeaknessId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -102,6 +118,10 @@ CREATE TABLE `SuperheroWeakness` (
 	FOREIGN KEY(`SuperheroId`) REFERENCES `Superhero`(`SuperheroId`)
 );
 
+INSERT INTO SuperheroWeakness
+  SELECT null, s.SuperheroId, w.WeaknessId
+  FROM Weakness w, Superhero s
+  WHERE s.Name = 'Green Lantern' and w.Name = "Yellow";
 
 
 

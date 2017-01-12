@@ -1,8 +1,23 @@
+DELETE FROM Superhero;
+DELETE FROM Power;
+DELETE FROM PowerType;
+DELETE FROM SuperheroPower;
+DELETE FROM Sidekick;
+
+DROP TABLE IF EXISTS Superhero;
+DROP TABLE IF EXISTS Power;
+DROP TABLE IF EXISTS PowerType;
+DROP TABLE IF EXISTS SuperheroPower;
+DROP TABLE IF EXISTS Sidekick;
+
+
+
 CREATE TABLE `Superhero` (
 	`SuperheroId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	`Name`	TEXT NOT NULL,
 	`Gender`	TEXT NOT NULL,
-	`Lair`	TEXT NOT NULL
+	`Lair`	TEXT NOT NULL,
+  `CostumeColor` TEXT NOT NULL
 );
 
 CREATE TABLE `Sidekick` (

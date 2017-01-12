@@ -49,4 +49,17 @@ CREATE TABLE `SuperheroPower` (
 	FOREIGN KEY(`SuperheroId`) REFERENCES `Superhero`(`SuperheroId`)
 );
 
+CREATE TABLE `Weakness` (
+	`WeaknessId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`Name`	TEXT NOT NULL
+);
+
+CREATE TABLE `SuperheroWeakness` (
+	`SuperheroWeaknessId`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	`SuperheroId`	INTEGER NOT NULL,
+	`WeaknessId`	INTEGER NOT NULL,
+	FOREIGN KEY(`WeaknessId`) REFERENCES `Weakness`(`WeaknessId`),
+	FOREIGN KEY(`SuperheroId`) REFERENCES `Superhero`(`SuperheroId`)
+);
+
 
